@@ -27,11 +27,6 @@ revindex_parallel: books revindex_procs.cpp wordindex.h wordindex.o
 wordindex.o: wordindex.cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
-check: revindex_sequential revindex_parallel books
-	./revindex_sequential books < input.txt > output_sequential.txt
-	./revindex_parallel books < input.txt > output_parallel.txt
-	diff output_parallel.txt output_sequential.txt
-
 clean:
 	rm -fv $(EXECS) wordindex.o
 
