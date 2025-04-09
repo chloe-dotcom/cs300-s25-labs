@@ -11,6 +11,9 @@ books:
 	rm lab5-books.tar.gz
 	mkdir -p tiny
 	cp -pv books/Ion* books/The\ Works* tiny/
+	wget https://csci0300.github.io/assign/labs/assets/lab5-expected-output.tar.gz
+	tar -xvf lab5-expected-output.tar.gz
+	rm lab5-expected-output.tar.gz
 
 format:
 	clang-format -style=Google -i revindex_procs.cpp
