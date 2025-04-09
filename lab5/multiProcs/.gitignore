@@ -1,0 +1,17 @@
+*.o
+
+
+*~
+\#*#
+.\#*
+
+.DS_Store
+
+books/
+tiny/
+
+revindex_parallel
+revindex_sequential
+
+output_parallel.txt
+output_sequential.txt
