@@ -46,7 +46,6 @@ int process_input(std::string term, std::vector<std::string>& filenames,
     std::vector<wordindex> results;
 
     int* pids = (int*)malloc(workers * sizeof(int));
-    int* pipes_to_read = (int*)malloc(workers * sizeof(int));
     // TODO:  declare any extra variables (if needed)
 
     /*
@@ -97,7 +96,6 @@ int process_input(std::string term, std::vector<std::string>& filenames,
     print_occurrences(term, results);
 
     free(pids);
-    free(pipes_to_read);
     // TODO:  clean up any extra resources (if needed)
 
     return 0;
