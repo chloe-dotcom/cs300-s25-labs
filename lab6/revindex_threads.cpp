@@ -1,4 +1,4 @@
-#include <fcntl.h>
+ #include <fcntl.h>
 #include <sys/mman.h>
 #include <cstring>
 #include <fstream>
@@ -35,7 +35,7 @@
  * blocks, which is fine.
  */
 int run_workers(std::string term, std::vector<std::string>& filenames,
-		int start_pos, int num_threads, std::vector<wordindex>& results) {
+                int start_pos, int num_threads, std::vector<wordindex>& results) {
 
     // TODO:  declare any extra variables (if needed)
 
@@ -78,15 +78,15 @@ int main(int argc, char* argv[]) {
 
     if (argc == 3) {
         dirname = argv[1];
-	search_term = argv[2];
+        search_term = argv[2];
     } else if (argc == 5) {
-	workers = atoi(argv[2]);
+        workers = atoi(argv[2]);
         dirname = argv[3];
-	search_term = argv[4];
+        search_term = argv[4];
     }
     else {
-	fprintf(stderr, "Usage:  %s [--workers N] <dir with text files> <search term>\n", argv[0]);
-	exit(1);
+        fprintf(stderr, "Usage:  %s [--workers N] <dir with text files> <search term>\n", argv[0]);
+        exit(1);
     }
 
     // Load input files from directory
@@ -105,31 +105,31 @@ int main(int argc, char* argv[]) {
     int err = 0;
     int files_completed = 0;  // the number of files that have been processed
     while (files_completed < files_total) {
-	int num_threads = 0; // Threads to create in this round
+        int num_threads = 0; // Threads to create in this round
 
         if ((files_total - files_completed) > workers) {
-	    num_threads = workers;
-	} else {
-	    num_threads = files_total - files_completed;
-	}
+            num_threads = workers;
+        } else {
+            num_threads = files_total - files_completed;
+        }
 
-	int start_pos = files_completed;
+        int start_pos = files_completed;
 
         // Compute the reverse index and search for the term!
-	int err = run_workers(term, filenames, start_pos, num_threads, results);
-	if (err) {
-	    break;
-	}
+        int err = run_workers(term, filenames, start_pos, num_threads, results);
+        if (err) {
+            break;
+        }
 
-	files_completed += num_threads;
+        files_completed += num_threads;
 
     }
     print_occurrences(term, results);
 
     if (err < 0) {
-	printf("ERROR:  %d\n", err);
-	exit(1);
+        printf("ERROR:  %d\n", err);
+        exit(1);
     } else {
-	exit(0);
+        exit(0);
     }
 }
